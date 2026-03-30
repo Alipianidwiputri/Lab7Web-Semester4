@@ -1,4 +1,17 @@
 # Lab7Web-Semester4
+
+**Persiapan**
+Sebelum memulai menggunakan Framework Codeigniter, perlu dilakukan konfigurasi pada 
+webserver. Beberapa ekstensi PHP perlu diaktifkan untuk kebutuhan pengembangan 
+Codeigniter 4. 
+Berikut beberapa ekstensi yang perlu diaktifkan: 
+• php-json ekstension untuk bekerja dengan JSON; 
+• php-mysqlnd native driver untuk MySQL; 
+• php-xml ekstension untuk bekerja dengan XML; 
+• php-intl ekstensi untuk membuat aplikasi multibahasa; 
+• libcurl (opsional), jika ingin pakai Curl. 
+Untuk mengaktifkan ekstentsi tersebut, melalu XAMPP Control Panel, pada bagian Apache 
+klik Config -> PHP.ini
 <img width="1919" height="924" alt="Cuplikan layar 2026-03-29 221700" src="https://github.com/user-attachments/assets/9809f4d1-24c0-4b6a-9b97-4a16846c9647" />
 
 <img width="963" height="301" alt="Cuplikan layar 2026-03-29 222216" src="https://github.com/user-attachments/assets/d484761a-4ff4-4b09-b129-bdbeead4b4ee" />
