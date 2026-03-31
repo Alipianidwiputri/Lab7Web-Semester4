@@ -22,8 +22,11 @@ klik Config -> PHP.ini
 
 <img width="954" height="997" alt="Cuplikan layar 2026-03-29 222247" src="https://github.com/user-attachments/assets/524e8d54-2012-49ea-afdc-1cfdc5a68e97" />
 
-
 <img width="1919" height="704" alt="image" src="https://github.com/user-attachments/assets/6942d15e-c076-4983-bfd0-9cf7e54e4e86" />
+
+setelah ditambahkan satu artikel
+<img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
+
 
 
 <img width="910" height="360" alt="image" src="https://github.com/user-attachments/assets/fb6e6e4f-6abb-4450-a26e-11ea3770cd8f" />
