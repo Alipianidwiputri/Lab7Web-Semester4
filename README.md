@@ -31,13 +31,14 @@ klik Config -> PHP.ini
 
 <img width="1243" height="553" alt="image" src="https://github.com/user-attachments/assets/a9caec2e-482a-4823-a5b6-4e81612a0b17" />
 
+<img width="1567" height="679" alt="image" src="https://github.com/user-attachments/assets/0d6390c5-8b5f-4b1b-9bd3-77811836f018" />
+
+<img width="1919" height="767" alt="image" src="https://github.com/user-attachments/assets/0383af2a-31d0-4bfb-87d8-a070c52c253c" />
+
+
 
 # PRAKTIKUM 2
 
 <img width="1918" height="766" alt="image" src="https://github.com/user-attachments/assets/1329ee4b-d91a-41c2-bcf5-db88395b1f09" />
 
-
-
-<img width="1567" height="679" alt="image" src="https://github.com/user-attachments/assets/0d6390c5-8b5f-4b1b-9bd3-77811836f018" />
-
-<img width="1919" height="767" alt="image" src="https://github.com/user-attachments/assets/0383af2a-31d0-4bfb-87d8-a070c52c253c" />
+<img width="1919" height="746" alt="image" src="https://github.com/user-attachments/assets/9bd4b193-e751-443a-a0e1-26d3885e5d4f" />
