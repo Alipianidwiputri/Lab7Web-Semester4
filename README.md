@@ -27,10 +27,7 @@ klik Config -> PHP.ini
 setelah ditambahkan satu artikel
 <img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
 
-
-
 <img width="910" height="360" alt="image" src="https://github.com/user-attachments/assets/fb6e6e4f-6abb-4450-a26e-11ea3770cd8f" />
-
 
 <img width="1243" height="553" alt="image" src="https://github.com/user-attachments/assets/a9caec2e-482a-4823-a5b6-4e81612a0b17" />
 
@@ -51,3 +48,11 @@ setelah ditambahkan satu artikel
 <img width="962" height="614" alt="image" src="https://github.com/user-attachments/assets/240a200f-b9ab-47cf-b57f-5b0929be518b" />
 
 <img width="1919" height="727" alt="image" src="https://github.com/user-attachments/assets/59bff7be-eedd-4998-8820-8758701eea65" />
+
+setelah ditambahkan satu artikel
+<img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
+
+setelah salah satu artikrlnya di hapus
+
+<img width="1907" height="625" alt="image" src="https://github.com/user-attachments/assets/d600d0d0-3667-4717-82ef-926559a56179" />
+
