@@ -1,5 +1,9 @@
 # Lab7Web-Semester4
 
+
+# PRAKTIUM 1
+
+
 **Persiapan**
 Sebelum memulai menggunakan Framework Codeigniter, perlu dilakukan konfigurasi pada 
 webserver. Beberapa ekstensi PHP perlu diaktifkan untuk kebutuhan pengembangan 
@@ -26,6 +30,11 @@ klik Config -> PHP.ini
 
 
 <img width="1243" height="553" alt="image" src="https://github.com/user-attachments/assets/a9caec2e-482a-4823-a5b6-4e81612a0b17" />
+
+
+# PRAKTIKUM 2
+
+<img width="1918" height="766" alt="image" src="https://github.com/user-attachments/assets/1329ee4b-d91a-41c2-bcf5-db88395b1f09" />
 
 
 
