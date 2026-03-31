@@ -44,3 +44,5 @@ klik Config -> PHP.ini
 <img width="1919" height="746" alt="image" src="https://github.com/user-attachments/assets/9bd4b193-e751-443a-a0e1-26d3885e5d4f" />
 
 <img width="1919" height="730" alt="image" src="https://github.com/user-attachments/assets/fafba2f1-0bc7-4e95-b2df-683c5ccc0e7b" />
+
+<img width="962" height="614" alt="image" src="https://github.com/user-attachments/assets/240a200f-b9ab-47cf-b57f-5b0929be518b" />
