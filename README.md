@@ -56,3 +56,20 @@ setelah salah satu artikrlnya di hapus
 
 <img width="1907" height="625" alt="image" src="https://github.com/user-attachments/assets/d600d0d0-3667-4717-82ef-926559a56179" />
 
+# PRAKTIKUM 3
+
+<img width="1714" height="761" alt="image" src="https://github.com/user-attachments/assets/4a7f7bce-62e6-4672-8898-b18739f43877" />
+
+Pertanyaan 1:
+
+Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?
+
+Jawaban:
+View Layout memungkinkan kita membuat template tampilan yang konsisten di semua halaman. Cukup ubah satu file layout, semua halaman yang menggunakannya akan ikut berubah. Ini membuat kode lebih efisien, terstruktur, dan mudah dipelihara.
+
+Pertanyaan 2:
+
+Jelaskan perbedaan antara View Cell dan View biasa.
+
+Jawaban:
+View biasa dipanggil langsung dari Controller dan menampilkan seluruh halaman. Sedangkan View Cell adalah komponen kecil yang bisa dipanggil dari dalam View manapun secara mandiri, memiliki logika sendiri untuk mengambil data, dan dapat digunakan ulang di berbagai halaman tanpa harus melewati Controller.
