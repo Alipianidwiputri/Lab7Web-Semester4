@@ -287,7 +287,10 @@ Kemudian ubah file **app/Views/about.php** menjadi:
 <?= $this->include('template/footer'); ?>
 ```
 
-> 📸 **[Screenshot: Tampilan halaman About dengan layout lengkap (header, nav, sidebar, footer)]**
+<img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
+
+<img width="1919" height="767" alt="image" src="https://github.com/user-attachments/assets/0383af2a-31d0-4bfb-87d8-a070c52c253c" />
+
 
 ---
 
@@ -310,18 +313,6 @@ Tampilan akhir website dengan layout lengkap:
 - ✅ Konten utama di bagian kiri
 - ✅ Sidebar dengan Widget Header dan Widget Text di bagian kanan 
 - ✅ Footer di bagian bawah
-
-setelah ditambahkan satu artikel
-<img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
-
-<img width="910" height="360" alt="image" src="https://github.com/user-attachments/assets/fb6e6e4f-6abb-4450-a26e-11ea3770cd8f" />
-
-<img width="1243" height="553" alt="image" src="https://github.com/user-attachments/assets/a9caec2e-482a-4823-a5b6-4e81612a0b17" />
-
-<img width="1567" height="679" alt="image" src="https://github.com/user-attachments/assets/0d6390c5-8b5f-4b1b-9bd3-77811836f018" />
-
-<img width="1919" height="767" alt="image" src="https://github.com/user-attachments/assets/0383af2a-31d0-4bfb-87d8-a070c52c253c" />
-
 
 
 # PRAKTIKUM 2
