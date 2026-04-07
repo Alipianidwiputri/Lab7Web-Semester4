@@ -306,7 +306,7 @@ Tampilan akhir website dengan layout lengkap:
 - ✅ Header dengan judul "Layout Sederhana"
 - ✅ Navigasi menu (Home, Artikel, About, Kontak)
 - ✅ Konten utama di bagian kiri
-- ✅ Sidebar dengan Widget Header dan Widget Text di bagian kanan
+- ✅ Sidebar dengan Widget Header dan Widget Text di bagian kanan 
 - ✅ Footer di bagian bawah
 <img width="1919" height="924" alt="Cuplikan layar 2026-03-29 221700" src="https://github.com/user-attachments/assets/9809f4d1-24c0-4b6a-9b97-4a16846c9647" />
 
