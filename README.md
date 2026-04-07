@@ -65,7 +65,7 @@ Perintah yang dapat dijalankan untuk memanggil CLI Codeigniter adalah:
 php spark
 ```
 
-> 📸 **[Screenshot: Tampilan CLI CodeIgniter setelah menjalankan perintah php spark]**
+<img width="954" height="997" alt="Cuplikan layar 2026-03-29 222247" src="https://github.com/user-attachments/assets/524e8d54-2012-49ea-afdc-1cfdc5a68e97" />
 
 ---
 
@@ -74,8 +74,7 @@ Codeigniter 4 menyediakan fitur **debugging** untuk memudahkan developer untuk m
 
 Secara default fitur ini belum aktif. Ketika terjadi error pada aplikasi akan ditampilkan pesan kesalahan **"Whoops!"** yang tidak informatif.
 
-> 📸 **[Screenshot: Tampilan error Whoops! sebelum mode debugging diaktifkan]**
-
+<img width="1919" height="704" alt="image" src="https://github.com/user-attachments/assets/6942d15e-c076-4983-bfd0-9cf7e54e4e86" />
 Untuk mengaktifkan mode debugging:
 - Ubah nama file **env** menjadi **.env**
 - Buka file tersebut dan ubah nilai variable **CI_ENVIRONMENT** menjadi **development**
@@ -84,18 +83,20 @@ Untuk mengaktifkan mode debugging:
 CI_ENVIRONMENT = development
 ```
 
-> 📸 **[Screenshot: Tampilan file .env dengan CI_ENVIRONMENT = development]**
+<img width="532" height="178" alt="image" src="https://github.com/user-attachments/assets/b5b360e3-8d90-4c71-a1a3-0a1b6777e75b" />
 
 Setelah mode debugging aktif, pesan error akan ditampilkan lebih detail seperti **ParseError** beserta nama file dan nomor baris yang menyebabkan error.
 
-> 📸 **[Screenshot: Tampilan ParseError setelah mode debugging diaktifkan]**
+<img width="488" height="311" alt="image" src="https://github.com/user-attachments/assets/ca63867d-4ea5-42de-beb1-cc227b67f3c8" />
+
 
 ---
 
 ### 5. Struktur Direktori
 Untuk lebih memahami Framework Codeigniter 4 perlu mengetahui struktur direktori dan file yang ada. Buka pada **Windows Explorer** atau dari **Visual Studio Code -> Open Folder**.
 
-> 📸 **[Screenshot: Tampilan struktur direktori CI4 di VSCode atau Windows Explorer]**
+<img width="1439" height="847" alt="image" src="https://github.com/user-attachments/assets/39544d74-fa6f-4340-aa46-7b34a272a4e4" />
+
 
 Terdapat beberapa direktori dan file yang perlu dipahami fungsi dan kegunaannya:
 
@@ -148,11 +149,12 @@ Untuk mengetahui route yang ditambahkan sudah benar, buka CLI dan jalankan:
 php spark routes
 ```
 
-> 📸 **[Screenshot: Tampilan daftar route di CLI setelah menjalankan php spark routes]**
+<img width="1713" height="409" alt="image" src="https://github.com/user-attachments/assets/4463e363-920a-4346-826a-f5772d3f1f93" />
+
 
 Ketika route diakses tanpa Controller yang sesuai, akan muncul error 404.
 
-> 📸 **[Screenshot: Tampilan error 404 File Not Found]**
+<img width="593" height="367" alt="image" src="https://github.com/user-attachments/assets/c05505ea-5c3d-418f-ad1f-a8fcaf686a9b" />
 
 ---
 
@@ -214,7 +216,7 @@ Buat file baru dengan nama **about.php** pada direktori **app/Views/**:
 </html>
 ```
 
-> 📸 **[Screenshot: Tampilan halaman About dengan judul dan konten]**
+<img width="910" height="360" alt="image" src="https://github.com/user-attachments/assets/fb6e6e4f-6abb-4450-a26e-11ea3770cd8f" />
 
 ---
 
@@ -308,13 +310,6 @@ Tampilan akhir website dengan layout lengkap:
 - ✅ Konten utama di bagian kiri
 - ✅ Sidebar dengan Widget Header dan Widget Text di bagian kanan 
 - ✅ Footer di bagian bawah
-<img width="1919" height="924" alt="Cuplikan layar 2026-03-29 221700" src="https://github.com/user-attachments/assets/9809f4d1-24c0-4b6a-9b97-4a16846c9647" />
-
-<img width="963" height="301" alt="Cuplikan layar 2026-03-29 222216" src="https://github.com/user-attachments/assets/d484761a-4ff4-4b09-b129-bdbeead4b4ee" />
-
-<img width="954" height="997" alt="Cuplikan layar 2026-03-29 222247" src="https://github.com/user-attachments/assets/524e8d54-2012-49ea-afdc-1cfdc5a68e97" />
-
-<img width="1919" height="704" alt="image" src="https://github.com/user-attachments/assets/6942d15e-c076-4983-bfd0-9cf7e54e4e86" />
 
 setelah ditambahkan satu artikel
 <img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
