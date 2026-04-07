@@ -33,7 +33,8 @@ Berikut beberapa ekstensi yang perlu diaktifkan:
 
 Untuk mengaktifkan ekstensi tersebut, melalui **XAMPP Control Panel**, pada bagian Apache klik **Config -> PHP.ini**
 
-> 📸 **[Screenshot: Tampilan XAMPP Control Panel saat memilih Config -> PHP.ini]**
+<img width="1115" height="645" alt="image" src="https://github.com/user-attachments/assets/e8ba8d46-1a25-4032-9fc2-628af1d4bee7" />
+
 
 Pada bagian extension, hilangkan tanda ; (titik koma) pada ekstensi yang akan diaktifkan. Kemudian simpan kembali filenya dan restart Apache web server.
 
