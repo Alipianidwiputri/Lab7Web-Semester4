@@ -38,7 +38,7 @@ Untuk mengaktifkan ekstensi tersebut, melalui **XAMPP Control Panel**, pada bagi
 
 Pada bagian extension, hilangkan tanda ; (titik koma) pada ekstensi yang akan diaktifkan. Kemudian simpan kembali filenya dan restart Apache web server.
 
-> 📸 **[Screenshot: Tampilan file PHP.ini dengan ekstensi yang sudah diaktifkan]**
+<img width="976" height="625" alt="image" src="https://github.com/user-attachments/assets/2dc4ac2b-0957-4ce0-9402-3c7f1fb2442d" />
 
 ---
 
@@ -50,7 +50,7 @@ Untuk melakukan instalasi Codeigniter 4 dapat dilakukan dengan dua cara, yaitu c
 - Ubah nama direktori **framework-4.x.xx** menjadi **ci4**
 - Buka browser dengan alamat http://localhost/lab11_ci/ci4/public/
 
-> 📸 **[Screenshot: Tampilan halaman Welcome to CodeIgniter 4 di browser]**
+<img width="1919" height="924" alt="Cuplikan layar 2026-03-29 221700" src="https://github.com/user-attachments/assets/9809f4d1-24c0-4b6a-9b97-4a16846c9647" />
 
 ---
 
