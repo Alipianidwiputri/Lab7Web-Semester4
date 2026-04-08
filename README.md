@@ -1,21 +1,15 @@
-# Lab7Web-Semester4
+ # Lab7Web-Semester4
+
+**Nama : Alipiani Dwi Putri**
+**NIM : 312410691**
+**Kelas : TI24 A.2**
+**Mata Kuliah : Pemrograman Web2**
+Dosen : Agung Nugroho, S.Kom., M.Kom.
+
+---
 
 
-# PRAKTIUM 1
-
-
-**Persiapan**
 # Praktikum 1: PHP Framework (Codeigniter)
-
-## Tujuan
-1. Mahasiswa mampu memahami konsep dasar Framework.
-2. Mahasiswa mampu memahami konsep dasar MVC.
-3. Mahasiswa mampu membuat program sederhana menggunakan Framework Codeigniter 4.
-
-## Instruksi Praktikum
-1. Persiapkan text editor misalnya VSCode.
-2. Buat folder baru dengan nama **lab11_ci** pada docroot webserver (htdocs).
-3. Ikuti langkah-langkah praktikum yang akan dijelaskan berikutnya.
 
 ---
 
@@ -308,26 +302,14 @@ Membuat view untuk halaman **contact.php** dan **faqs.php** dengan menggunakan t
 
 ## Hasil Akhir
 Tampilan akhir website dengan layout lengkap:
-- ✅ Header dengan judul "Layout Sederhana"
-- ✅ Navigasi menu (Home, Artikel, About, Kontak)
-- ✅ Konten utama di bagian kiri
-- ✅ Sidebar dengan Widget Header dan Widget Text di bagian kanan 
-- ✅ Footer di bagian bawah
+- Header dengan judul "Layout Sederhana"
+- Navigasi menu (Home, Artikel, About, Kontak)
+- Konten utama di bagian kiri
+- Sidebar dengan Widget Header dan Widget Text di bagian kanan 
+- Footer di bagian bawah
 
-
-# PRAKTIKUM 2
 
 # PRAKTIKUM 2: Framework Lanjutan (CRUD)
-
-## Tujuan
-1. Mahasiswa mampu memahami konsep dasar Model.
-2. Mahasiswa mampu memahami konsep dasar CRUD.
-3. Mahasiswa mampu membuat program sederhana menggunakan Framework Codeigniter 4.
-
-## Instruksi Praktikum
-1. Persiapkan text editor misalnya VSCode.
-2. Buka kembali folder dengan nama **lab11_ci** pada docroot webserver (htdocs).
-3. Ikuti langkah-langkah praktikum yang akan dijelaskan berikutnya.
 
 ---
 
@@ -368,7 +350,7 @@ database.default.DBDriver = MySQLi
 database.default.DBPrefix =
 ```
 
-> 📸 **[Screenshot: Tampilan konfigurasi database di file .env]**
+<img width="888" height="302" alt="image" src="https://github.com/user-attachments/assets/04d326da-a040-46d7-b8db-559b484dd34f" />
 
 ---
 
@@ -513,7 +495,7 @@ Buat direktori baru dengan nama **artikel** pada direktori **app/Views**, kemudi
 
 Selanjutnya buka browser dengan mengakses url `http://localhost/lab11_ci/ci4/public/artikel`
 
-> 📸 **[Screenshot: Tampilan halaman artikel saat belum ada data "Belum ada data."]**
+<img width="1918" height="766" alt="image" src="https://github.com/user-attachments/assets/1329ee4b-d91a-41c2-bcf5-db88395b1f09" />
 
 ---
 
@@ -528,7 +510,7 @@ INSERT INTO artikel (judul, isi, slug) VALUES
 
 Refresh kembali browser, sehingga akan ditampilkan hasilnya.
 
-> 📸 **[Screenshot: Tampilan daftar artikel setelah data ditambahkan]**
+<img width="1919" height="746" alt="image" src="https://github.com/user-attachments/assets/9bd4b193-e751-443a-a0e1-26d3885e5d4f" />
 
 ---
 
@@ -555,7 +537,7 @@ Tambahkan routing untuk artikel detail di **app/Config/Routes.php**:
 $routes->get('/artikel/(:any)', 'Artikel::view/$1');
 ```
 
-> 📸 **[Screenshot: Tampilan halaman detail artikel]**
+<img width="1919" height="730" alt="image" src="https://github.com/user-attachments/assets/fafba2f1-0bc7-4e95-b2df-683c5ccc0e7b" />
 
 ---
 
@@ -622,7 +604,7 @@ $routes->group('admin', function($routes) {
 
 Akses menu admin dengan url `http://localhost/lab11_ci/ci4/public/admin/artikel`
 
-> 📸 **[Screenshot: Tampilan halaman Admin Portal Berita dengan tabel artikel]**
+<img width="962" height="614" alt="image" src="https://github.com/user-attachments/assets/240a200f-b9ab-47cf-b57f-5b0929be518b" />
 
 ---
 
@@ -650,8 +632,7 @@ Buat view untuk form tambah dengan nama **form_add.php** pada direktori **app/Vi
 <?= $this->include('template/admin_footer'); ?>
 ```
 
-> 📸 **[Screenshot: Tampilan form Tambah Artikel]**
-
+<img width="1919" height="727" alt="image" src="https://github.com/user-attachments/assets/59bff7be-eedd-4998-8820-8758701eea65" />
 ---
 
 ### 10. Mengubah Data Artikel (Form Edit)
@@ -682,30 +663,29 @@ Buat view untuk form edit dengan nama **form_edit.php** pada direktori **app/Vie
 
 ---
 
-### 11. Menghapus Data Artikel
-Fungsi hapus data sudah ada pada method **delete()** di Controller Artikel. Ketika tombol **Hapus** diklik, akan muncul konfirmasi "Yakin menghapus data?" sebelum data dihapus dari database.
+Setelah menambah satu artikel
 
-> 📸 **[Screenshot: Tampilan konfirmasi hapus data]**
+<img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
 
 ---
 
-## Pertanyaan dan Tugas
-Selesaikan programnya sesuai langkah-langkah yang ada. Anda boleh melakukan improvisasi.
+### 11. Menghapus Data Artikel
+Fungsi hapus data sudah ada pada method **delete()** di Controller Artikel. Ketika tombol **Hapus** diklik, akan muncul konfirmasi "Yakin menghapus data?" sebelum data dihapus dari database.
+
+Salah satu Data Yang sudah dihapus
+<img width="1907" height="625" alt="image" src="https://github.com/user-attachments/assets/d600d0d0-3667-4717-82ef-926559a56179" />
 
 ---
 
 ## Hasil Akhir Praktikum 2
 
 Fitur CRUD yang berhasil dibuat:
-- ✅ **Read** - Menampilkan daftar artikel di halaman publik
-- ✅ **Read Detail** - Menampilkan detail artikel saat judul diklik
-- ✅ **Create** - Form tambah artikel baru di halaman admin
-- ✅ **Update** - Form edit artikel yang sudah ada
-- ✅ **Delete** - Hapus artikel dengan konfirmasi
+- **Read** - Menampilkan daftar artikel di halaman publik
+- **Read Detail** - Menampilkan detail artikel saat judul diklik
+- **Create** - Form tambah artikel baru di halaman admin
+- **Update** - Form edit artikel yang sudah ada
+- **Delete** - Hapus artikel dengan konfirmasi
 
-<img width="1918" height="766" alt="image" src="https://github.com/user-attachments/assets/1329ee4b-d91a-41c2-bcf5-db88395b1f09" />
-
-<img width="1919" height="746" alt="image" src="https://github.com/user-attachments/assets/9bd4b193-e751-443a-a0e1-26d3885e5d4f" />
 
 <img width="1919" height="730" alt="image" src="https://github.com/user-attachments/assets/fafba2f1-0bc7-4e95-b2df-683c5ccc0e7b" />
 
@@ -713,27 +693,154 @@ Fitur CRUD yang berhasil dibuat:
 
 <img width="1919" height="727" alt="image" src="https://github.com/user-attachments/assets/59bff7be-eedd-4998-8820-8758701eea65" />
 
-setelah ditambahkan satu artikel
-<img width="963" height="661" alt="image" src="https://github.com/user-attachments/assets/36b9fea3-b001-4636-aa56-b343d7544ddf" />
 
-setelah salah satu artikrlnya di hapus
 
-<img width="1907" height="625" alt="image" src="https://github.com/user-attachments/assets/d600d0d0-3667-4717-82ef-926559a56179" />
+# PRAKTIKUM 3: View Layout dan View Cell
 
-# PRAKTIKUM 3
+## Langkah-langkah Praktikum
+
+### 1. Persiapan
+Pada praktikum sebelumnya kita telah menggunakan template layout dengan konsep parsial atau memecah bagian template menjadi beberapa bagian untuk kemudian di include pada view yang lain.
+
+Praktikum kali ini kita akan menggunakan konsep **View Layout** dan **View Cell** untuk memudahkan dalam penggunaan layout.
+
+Tambahkan field **created_at** pada tabel artikel di database:
+
+```sql
+ALTER TABLE artikel ADD COLUMN created_at DATETIME DEFAULT CURRENT_TIMESTAMP;
+```
+
+---
+
+### 2. Membuat Layout Utama
+Buat folder **layout** di dalam **app/Views/**, kemudian buat file **main.php** di dalam folder layout:
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?= $title ?? 'My Website' ?></title>
+    <link rel="stylesheet" href="<?= base_url('/style.css');?>">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Layout Sederhana</h1>
+        </header>
+        <nav>
+            <a href="<?= base_url('/');?>" class="active">Home</a>
+            <a href="<?= base_url('/artikel');?>">Artikel</a>
+            <a href="<?= base_url('/about');?>">About</a>
+            <a href="<?= base_url('/contact');?>">Kontak</a>
+        </nav>
+        <section id="wrapper">
+            <section id="main">
+                <?= $this->renderSection('content') ?>
+            </section>
+            <aside id="sidebar">
+                <?= view_cell('App\\Cells\\ArtikelTerkini::render') ?>
+                <div class="widget-box">
+                    <h3 class="title">Widget Header</h3>
+                    <ul>
+                        <li><a href="#">Widget Link</a></li>
+                        <li><a href="#">Widget Link</a></li>
+                    </ul>
+                </div>
+                <div class="widget-box">
+                    <h3 class="title">Widget Text</h3>
+                    <p>Vestibulum lorem elit, iaculis in nisl volutpat, malesuada tincidunt arcu.</p>
+                </div>
+            </aside>
+        </section>
+        <footer>
+            <p>&copy; 2021 - Universitas Pelita Bangsa</p>
+        </footer>
+    </div>
+</body>
+</html>
+```
+
+---
+
+### 3. Modifikasi File View
+Ubah file **app/Views/about.php** agar sesuai dengan layout baru:
+
+```php
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
+<h1><?= $title; ?></h1>
+<hr>
+<p><?= $content; ?></p>
+<?= $this->endSection() ?>
+```
+
+Lakukan hal yang sama untuk file **contact.php**, **faqs.php**, dan **artikel/index.php**.
+
+---
+
+### 4. Membuat Class View Cell
+View Cell adalah fitur yang memungkinkan pemanggilan tampilan dalam bentuk komponen yang dapat digunakan ulang.
+
+Buat folder **Cells** di dalam **app/**, kemudian buat file **ArtikelTerkini.php**:
+
+```php
+<?php
+
+namespace App\Cells;
+
+use App\Models\ArtikelModel;
+
+class ArtikelTerkini
+{
+    public function render()
+    {
+        $model = new ArtikelModel();
+        $artikel = $model->orderBy('created_at', 'DESC')->limit(5)->findAll();
+        return view('components/artikel_terkini', ['artikel' => $artikel]);
+    }
+}
+```
+
+---
+
+### 5. Membuat View untuk View Cell
+Buat folder **components** di dalam **app/Views/**, kemudian buat file **artikel_terkini.php**:
+
+```php
+<div class="widget-box">
+    <h3 class="title">Artikel Terkini</h3>
+    <ul>
+        <?php foreach ($artikel as $row): ?>
+        <li><a href="<?= base_url('/artikel/' . $row['slug']) ?>"><?= $row['judul'] ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+```
+
+---
+
+### 6. Hasil Akhir
+Refresh browser dan akses halaman:
+```
+localhost/lab11_ci/ci4/public/about
+```
 
 <img width="1714" height="761" alt="image" src="https://github.com/user-attachments/assets/4a7f7bce-62e6-4672-8898-b18739f43877" />
+---
 
-Pertanyaan 1:
+## Pertanyaan dan Tugas
 
-Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?
+**1. Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?**
 
-Jawaban:
 View Layout memungkinkan kita membuat template tampilan yang konsisten di semua halaman. Cukup ubah satu file layout, semua halaman yang menggunakannya akan ikut berubah. Ini membuat kode lebih efisien, terstruktur, dan mudah dipelihara.
 
-Pertanyaan 2:
+**2. Jelaskan perbedaan antara View Cell dan View biasa.**
 
-Jelaskan perbedaan antara View Cell dan View biasa.
-
-Jawaban:
 View biasa dipanggil langsung dari Controller dan menampilkan seluruh halaman. Sedangkan View Cell adalah komponen kecil yang bisa dipanggil dari dalam View manapun secara mandiri, memiliki logika sendiri untuk mengambil data, dan dapat digunakan ulang di berbagai halaman tanpa harus melewati Controller.
+
+---
+
+
+
