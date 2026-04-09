@@ -295,9 +295,10 @@ Lengkapi kode program untuk menu lainnya yang ada pada Controller Page, sehingga
 **Jawaban:**
 Membuat view untuk halaman **contact.php** dan **faqs.php** dengan menggunakan template header dan footer yang sama, serta mengupdate method `contact()` dan `faqs()` pada Controller Page untuk memanggil view yang sesuai.
 
-> 📸 **[Screenshot: Tampilan halaman Contact dengan layout yang sama]**
+<img width="950" height="743" alt="image" src="https://github.com/user-attachments/assets/0b98e60a-3c8d-465f-b28f-e20edc0629b5" />
 
-> 📸 **[Screenshot: Tampilan halaman FAQ dengan layout yang sama]**
+
+<img width="955" height="737" alt="image" src="https://github.com/user-attachments/assets/d900a687-c29a-4e03-87c1-57db9c0dbddd" />
 
 ---
 
