@@ -188,7 +188,8 @@ class Page extends BaseController
 }
 ```
 
-> 📸 **[Screenshot: Tampilan halaman About setelah Controller berhasil dibuat]**
+<img width="654" height="180" alt="image" src="https://github.com/user-attachments/assets/c4c94f7a-5aba-4981-aab1-eeee1594d8c3" />
+
 
 ---
 
