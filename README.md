@@ -659,7 +659,7 @@ Buat view untuk form edit dengan nama **form_edit.php** pada direktori **app/Vie
 <?= $this->include('template/admin_footer'); ?>
 ```
 
-> 📸 **[Screenshot: Tampilan form Edit Artikel dengan data yang sudah terisi]**
+<img width="1914" height="829" alt="image" src="https://github.com/user-attachments/assets/b08031b8-2874-4133-a531-c6630fd9b2a7" />
 
 ---
 
