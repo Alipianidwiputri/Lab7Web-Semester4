@@ -844,7 +844,108 @@ View biasa dipanggil langsung dari Controller dan menampilkan seluruh halaman. S
 
 ---
 
-# Praktikum 4
+# Praktikum 4 - Modul Login CodeIgniter 4
+
+Praktikum ini membahas pembuatan modul login menggunakan Framework CodeIgniter 4, mencakup konsep Auth dan Filter.
+
+---
+
+## 1. Membuat Tabel User
+
+Jalankan query berikut di MySQL:
+
+```sql
+CREATE TABLE user (
+  id INT(11) auto_increment,
+  username VARCHAR(200) NOT NULL,
+  useremail VARCHAR(200),
+  userpassword VARCHAR(200),
+  PRIMARY KEY(id)
+);
+```
+
+---
+
+## 2. Membuat Model
+
+Buat file `app/Models/UserModel.php`:
+
+```php
+<?php
+namespace App\Models;
+use CodeIgniter\Model;
+
+class UserModel extends Model
+{
+    protected $table = 'user';
+    protected $primaryKey = 'id';
+    protected $useAutoIncrement = true;
+    protected $allowedFields = ['username', 'useremail', 'userpassword'];
+}
+```
+
+---
+
+## 3. Membuat Controller User
+
+Buat file `app/Controllers/User.php` dengan dua method utama:
+
+- `index()` → menampilkan daftar user
+- `login()` → memproses login (cek email & password, set session)
+- `logout()` → menghapus session dan redirect ke halaman login
+
+---
+
+## 4. Membuat View Login
+
+Buat folder `app/Views/user/` lalu buat file `login.php` berisi form dengan field **email** dan **password**, serta tampilan pesan flash error jika login gagal.
+
+---
+
+## 5. Membuat Database Seeder
+
+Buat seeder untuk data dummy user:
+
+```bash
+php spark make:seeder UserSeeder
+```
+
+Isi `app/Database/Seeds/UserSeeder.php` dengan data admin, lalu jalankan:
+
+```bash
+php spark db:seed UserSeeder
+```
+
+Kredensial default: `admin@email.com` / `admin123`
+
+---
+
+## 6. Menambahkan Auth Filter
+
+Buat file `app/Filters/Auth.php` untuk mengecek session `logged_in`. Jika belum login, redirect ke `/user/login`.
+
+Daftarkan filter di `app/Config/Filters.php`:
+
+```php
+'auth' => App\Filters\Auth::class
+```
+
+---
+
+## 7. Konfigurasi Routes
+
+Buka `app/Config/Routes.php`, terapkan filter `auth` pada grup route admin:
+
+```php
+$routes->group('admin', ['filter' => 'auth'], function($routes) {
+    $routes->get('artikel', 'Artikel::admin_index');
+    // ...
+});
+```
+
+---
+
+## Screenshot
 
 <img width="1919" height="649" alt="image" src="https://github.com/user-attachments/assets/1654c1cb-928e-465b-9d14-963fb3cd31b6" />
 
