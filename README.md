@@ -949,5 +949,143 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
 <img width="1919" height="649" alt="image" src="https://github.com/user-attachments/assets/1654c1cb-928e-465b-9d14-963fb3cd31b6" />
 
-# praktikum 5
+---
 
+# Praktikum 5 - Pagination dan Pencarian
+
+---
+
+## Langkah 1 - Modifikasi Controller untuk Pagination
+
+Buka file `app/Controllers/Artikel.php`, cari method `admin_index()` dan ubah kodenya menjadi seperti berikut:
+
+```php
+public function admin_index()
+{
+    $title = 'Daftar Artikel';
+    $model = new ArtikelModel();
+    $data = [
+        'title'   => $title,
+        'artikel' => $model->paginate(10), // batasi 10 data per halaman
+        'pager'   => $model->pager,
+    ];
+    return view('artikel/admin_index', $data);
+}
+```
+
+> **Keterangan:**
+> - `findAll()` diganti dengan `paginate(10)` agar data dibatasi 10 per halaman
+> - Ditambahkan `'pager' => $model->pager` untuk mengirim navigasi halaman ke view
+
+---
+
+## Langkah 2 - Modifikasi Controller untuk Pencarian
+
+Masih di file `app/Controllers/Artikel.php`, ubah kembali method `admin_index()` menjadi:
+
+```php
+public function admin_index()
+{
+    $title = 'Daftar Artikel';
+    $q     = $this->request->getVar('q') ?? '';
+    $model = new ArtikelModel();
+    $data  = [
+        'title'   => $title,
+        'q'       => $q,
+        'artikel' => $model->like('judul', $q)->paginate(10),
+        'pager'   => $model->pager,
+    ];
+    return view('artikel/admin_index', $data);
+}
+```
+
+> **Keterangan:**
+> - Ditambahkan `$q` untuk menangkap kata kunci dari form pencarian
+> - `->like('judul', $q)` untuk memfilter artikel berdasarkan judul
+> - `'q' => $q` dikirim ke view agar kata kunci tetap tampil setelah submit
+
+---
+
+## Langkah 3 - Modifikasi View Admin Index
+
+Buka file `app/Views/artikel/admin_index.php` dan ubah seluruh isinya menjadi:
+
+```php
+<?= $this->include('template/admin_header'); ?>
+
+<h2><?= $title; ?></h2>
+
+<div style="margin-bottom: 15px; display: flex; gap: 10px;">
+    <form method="get" style="display: flex; gap: 10px; width: 100%;">
+        <input type="text" name="q" value="<?= $q; ?>" 
+               placeholder="Cari artikel..." 
+               style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; width: 300px; font-size: 14px;">
+        <input type="submit" value="🔍 Cari" 
+               style="padding: 8px 20px; background-color: #1a6fc4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+    </form>
+</div>
+
+<table class="table" border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if($artikel): foreach($artikel as $row): ?>
+        <tr>
+            <td><?= $row['id']; ?></td>
+            <td><b><?= $row['judul']; ?></b><br>
+                <small><?= substr($row['isi'], 0, 100); ?>...</small>
+            </td>
+            <td><?= $row['status']; ?></td>
+            <td>
+                <a href="<?= base_url('/admin/artikel/edit/'. $row['id']); ?>">Edit</a> |
+                <a href="<?= base_url('/admin/artikel/delete/'. $row['id']); ?>" 
+                   onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+            </td>
+        </tr>
+        <?php endforeach; else: ?>
+        <tr>
+            <td colspan="4" style="text-align: center;">Belum ada data</td>
+        </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
+<div style="margin-top: 15px; display: flex; justify-content: center;">
+    <?= $pager->only(['q'])->links(); ?>
+</div>
+
+<?= $this->include('template/admin_footer'); ?>
+```
+
+> **Keterangan:**
+> - Form pencarian ditambahkan sebelum tabel
+> - `$pager->only(['q'])->links()` ditambahkan setelah tabel agar keyword ikut terbawa saat pindah halaman
+
+---
+
+## Hasil Pagination
+
+Buka url: `http://localhost/lab11_ci/ci4/public/index.php/admin/artikel`
+
+<img width="1600" height="760" alt="image" src="https://github.com/user-attachments/assets/6fa3edb7-3035-4af9-a326-04dd1e75eaa2" />
+---
+
+## Hasil Pencarian
+
+Masukkan kata kunci pada form pencarian, lalu klik tombol **Cari**.
+
+<img width="1919" height="496" alt="image" src="https://github.com/user-attachments/assets/d683f0fb-b46a-4037-9dcf-0e010bd2dd85" />
+
+---
+
+## Kesimpulan
+
+Pada praktikum ini telah berhasil dibuat fitur:
+- **Pagination** — data artikel ditampilkan maksimal 10 per halaman dengan navigasi halaman di bawah tabel
+- **Pencarian** — data artikel dapat difilter berdasarkan judul menggunakan form pencarian, dan keyword tetap terbawa saat pindah halaman
