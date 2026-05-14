@@ -1445,3 +1445,6 @@ Pada praktikum ini telah berhasil dibuat:
 - **Query Builder dengan JOIN** untuk mengambil data artikel beserta nama kategorinya
 - **Filter berdasarkan kategori** pada halaman admin artikel
 - **Form tambah dan edit artikel** dengan pilihan kategori
+
+# praktikum 7
+<img width="1499" height="833" alt="image" src="https://github.com/user-attachments/assets/4f15dd99-24af-46b6-9cf4-ca60efe5ed72" />
