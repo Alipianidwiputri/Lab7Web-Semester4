@@ -1587,3 +1587,18 @@ Pada praktikum ini telah berhasil dibuat fitur:
 - File gambar tersimpan di folder `public/gambar`
 - Nama file gambar tersimpan di database pada kolom `gambar`
 - Form menggunakan `enctype="multipart/form-data"` agar bisa mengirim file
+
+# Praktikum 8
+
+Form edit
+<img width="1524" height="866" alt="image" src="https://github.com/user-attachments/assets/3b92bfa3-03c9-4fdd-bd58-e25a32488c81" />
+
+sebelum di delete
+<img width="1595" height="760" alt="image" src="https://github.com/user-attachments/assets/efab6c92-61aa-4e09-9204-856c3b14d8a4" />
+
+notifikasi untuk memastikan ingin di delete
+<img width="1606" height="754" alt="image" src="https://github.com/user-attachments/assets/8070649c-123d-4b78-ae22-78b3d92cfe6f" />
+
+setelah di delete
+<img width="1503" height="689" alt="image" src="https://github.com/user-attachments/assets/2f0c3d4f-b67c-4689-99b2-cd2f746ac876" />
+
