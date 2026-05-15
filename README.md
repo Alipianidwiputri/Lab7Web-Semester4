@@ -1446,5 +1446,144 @@ Pada praktikum ini telah berhasil dibuat:
 - **Filter berdasarkan kategori** pada halaman admin artikel
 - **Form tambah dan edit artikel** dengan pilihan kategori
 
-# praktikum 7
-<img width="1499" height="833" alt="image" src="https://github.com/user-attachments/assets/4f15dd99-24af-46b6-9cf4-ca60efe5ed72" />
+---
+
+# Praktikum 7 - Upload File Gambar
+
+---
+
+## Langkah 1 - Membuat Folder untuk Menyimpan Gambar
+
+Buat folder baru di dalam folder `public` untuk menyimpan gambar yang diupload:
+
+```
+C:\Xampp\htdocs\lab11_ci\ci4\public\gambar
+```
+
+Atau bisa lewat CMD:
+
+```bash
+mkdir "C:\Xampp\htdocs\lab11_ci\ci4\public\gambar"
+```
+
+---
+
+## Langkah 2 - Modifikasi Method add() di Controller Artikel
+
+Buka file **`app/Controllers/Artikel.php`**, cari method `add()` dan ubah kodenya menjadi:
+
+```php
+public function add()
+{
+    $kategoriModel = new KategoriModel();
+    $data['kategori'] = $kategoriModel->findAll();
+    $data['title'] = "Tambah Artikel";
+
+    if ($this->request->getMethod() == 'post') {
+        $file = $this->request->getFile('gambar');
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $file->move(ROOTPATH . 'public/gambar');
+            $namaGambar = $file->getName();
+        } else {
+            $namaGambar = '';
+        }
+
+        $model = new ArtikelModel();
+        $model->insert([
+            'judul'       => $this->request->getPost('judul'),
+            'isi'         => $this->request->getPost('isi'),
+            'slug'        => url_title($this->request->getPost('judul')),
+            'id_kategori' => $this->request->getPost('id_kategori'),
+            'gambar'      => $namaGambar,
+        ]);
+        return redirect()->to('/admin/artikel');
+    }
+
+    return view('artikel/form_add', $data);
+}
+```
+
+> **Keterangan:**
+> - `$this->request->getFile('gambar')` → mengambil file yang diupload
+> - `$file->move(ROOTPATH . 'public/gambar')` → memindahkan file ke folder gambar
+> - `$file->getName()` → mengambil nama file untuk disimpan di database
+
+---
+
+## Langkah 3 - Modifikasi View form_add.php
+
+Buka file **`app/Views/artikel/form_add.php`** dan ubah seluruh isinya:
+
+```php
+<?= $this->include('template/admin_header'); ?>
+
+<h2><?= $title; ?></h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <?= csrf_field(); ?>
+    <p>
+        <label for="judul">Judul</label>
+        <input type="text" name="judul" id="judul" required>
+    </p>
+    <p>
+        <label for="isi">Isi</label>
+        <textarea name="isi" id="isi" cols="50" rows="10"></textarea>
+    </p>
+    <p>
+        <label for="id_kategori">Kategori</label>
+        <select name="id_kategori" id="id_kategori" required>
+            <?php foreach($kategori as $k): ?>
+            <option value="<?= $k['id_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
+            <?php endforeach; ?>
+        </select>
+    </p>
+    <p>
+        <label for="gambar">Gambar</label>
+        <input type="file" name="gambar" id="gambar">
+    </p>
+    <p><input type="submit" value="Kirim" class="btn btn-large"></p>
+</form>
+
+<?= $this->include('template/admin_footer'); ?>
+```
+
+> **Keterangan:**
+> - `enctype="multipart/form-data"` → wajib ditambahkan agar form bisa mengirim file
+> - `<?= csrf_field(); ?>` → token keamanan untuk mencegah CSRF attack
+> - `<input type="file" name="gambar">` → input untuk memilih file gambar
+
+---
+
+## Hasil Form Tambah Artikel dengan Upload Gambar
+
+Buka url: `http://localhost/lab11_ci/ci4/public/index.php/admin/artikel/add`
+
+<img width="1514" height="896" alt="image" src="https://github.com/user-attachments/assets/44e72c07-ffbb-4829-86f7-6544a0d0f352" />
+
+
+---
+
+## Hasil Setelah Menambah Artikel dengan Gambar
+
+Isi form tambah artikel, pilih gambar dari komputer, lalu klik **Kirim**. Artikel baru akan muncul di daftar artikel.
+
+> 📸 **[SCREENSHOT DAFTAR ARTIKEL SETELAH BERHASIL MENAMBAH ARTIKEL BARU DI SINI]**
+
+---
+
+## Hasil Gambar Tersimpan di Folder
+
+Cek folder `public/gambar` untuk memastikan gambar berhasil tersimpan.
+
+> 📸 **[SCREENSHOT FOLDER public/gambar YANG BERISI FILE GAMBAR DI SINI]**
+
+---
+
+## Kesimpulan
+
+Pada praktikum ini telah berhasil dibuat fitur:
+- **Upload File Gambar** pada form tambah artikel
+- File gambar tersimpan di folder `public/gambar`
+- Nama file gambar tersimpan di database pada kolom `gambar`
+- Form menggunakan `enctype="multipart/form-data"` agar bisa mengirim file
