@@ -4,7 +4,7 @@
 **NIM : 312410691**
 **Kelas : TI24 A.2**
 **Mata Kuliah : Pemrograman Web2**
-Dosen : Agung Nugroho, S.Kom., M.Kom.
+**Dosen : Agung Nugroho, S.Kom., M.Kom.**
 
 ---
 
@@ -1601,4 +1601,214 @@ notifikasi untuk memastikan ingin di delete
 
 setelah di delete
 <img width="1503" height="689" alt="image" src="https://github.com/user-attachments/assets/2f0c3d4f-b67c-4689-99b2-cd2f746ac876" />
+---
 
+# Praktikum 8 - AJAX
+
+---
+
+## Apa itu AJAX?
+
+AJAX (Asynchronous JavaScript and XML) adalah kumpulan teknik pengembangan web yang memungkinkan aplikasi web memperbarui dan menampilkan data dari server tanpa harus melakukan reload halaman secara keseluruhan. Hal ini membuat aplikasi web terasa lebih responsif dan dinamis.
+
+**Cara Kerja AJAX:**
+1. Pengguna melakukan aksi di halaman web (klik tombol, isi form, dll)
+2. JavaScript membuat request HTTP ke server
+3. Server memproses request dan mengambil data dari database
+4. Server mengirim respon dalam format JSON
+5. JavaScript memperbarui tampilan halaman tanpa reload
+
+---
+
+## Langkah 1 - Menambahkan Library jQuery
+
+Download jQuery dari **https://jquery.com/download/** lalu simpan file dengan nama `jquery-3.6.0.min.js`.
+
+Buat folder dan salin file jQuery ke dalamnya:
+
+```bash
+mkdir ci4\public\assets\js
+```
+
+Salin file `jquery-3.6.0.min.js` ke:
+
+```
+C:\Xampp\htdocs\lab11_ci\ci4\public\assets\js\
+```
+
+<img width="1875" height="162" alt="image" src="https://github.com/user-attachments/assets/947636dc-9829-4fa6-b869-dddc306bb4df" />
+
+
+---
+
+## Langkah 2 - Membuat AJAX Controller
+
+Buat file baru **`app/Controllers/AjaxController.php`** dengan isi:
+
+```php
+<?php
+
+namespace App\Controllers;
+
+use CodeIgniter\Controller;
+use App\Models\ArtikelModel;
+
+class AjaxController extends Controller
+{
+    public function index()
+    {
+        return view('ajax/index');
+    }
+
+    public function getData()
+    {
+        $model = new ArtikelModel();
+        $data = $model->findAll();
+        return $this->response->setJSON($data);
+    }
+
+    public function delete($id)
+    {
+        $model = new ArtikelModel();
+        $model->delete($id);
+        $data = [
+            'status' => 'OK'
+        ];
+        return $this->response->setJSON($data);
+    }
+}
+```
+
+> **Keterangan:**
+> - `getData()` mengambil semua data artikel dan mengirimkannya dalam format JSON
+> - `delete()` menghapus artikel berdasarkan id dan mengirimkan status OK dalam format JSON
+
+---
+
+## Langkah 3 - Menambahkan Route
+
+Buka **`app/Config/Routes.php`** dan tambahkan route berikut sebelum group admin:
+
+```php
+$routes->get('/ajax', 'AjaxController::index');
+$routes->get('/ajax/getData', 'AjaxController::getData');
+$routes->delete('/ajax/delete/(:num)', 'AjaxController::delete/$1');
+```
+
+---
+
+## Langkah 4 - Membuat View AJAX
+
+Buat folder baru **`app/Views/ajax/`** lalu buat file **`index.php`** di dalamnya dengan isi:
+
+```php
+<?= $this->include('template/header'); ?>
+
+<h1>Data Artikel</h1>
+
+<table id="artikelTable" border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4" style="text-align: center;">Loading data...</td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="<?= base_url('assets/js/jquery-3.6.0.min.js') ?>"></script>
+<script>
+$(document).ready(function() {
+
+    function showLoadingMessage() {
+        $('#artikelTable tbody').html('<tr><td colspan="4" style="text-align:center;">Loading data...</td></tr>');
+    }
+
+    function loadData() {
+        showLoadingMessage();
+        $.ajax({
+            url: "<?= base_url('ajax/getData') ?>",
+            method: "GET",
+            dataType: "json",
+            success: function(data) {
+                var tableBody = "";
+                for (var i = 0; i < data.length; i++) {
+                    var row = data[i];
+                    tableBody += '<tr>';
+                    tableBody += '<td>' + row.id + '</td>';
+                    tableBody += '<td>' + row.judul + '</td>';
+                    tableBody += '<td>' + row.status + '</td>';
+                    tableBody += '<td>';
+                    tableBody += '<a href="<?= base_url('admin/artikel/edit/') ?>' + row.id + '" style="padding:5px 10px;background:#42a5f5;color:white;border-radius:4px;text-decoration:none;margin-right:5px;">Edit</a>';
+                    tableBody += '<a href="#" class="btn-delete" data-id="' + row.id + '" style="padding:5px 10px;background:#ef5350;color:white;border-radius:4px;text-decoration:none;">Delete</a>';
+                    tableBody += '</td>';
+                    tableBody += '</tr>';
+                }
+                $('#artikelTable tbody').html(tableBody);
+            },
+            error: function() {
+                $('#artikelTable tbody').html('<tr><td colspan="4" style="text-align:center;">Gagal memuat data.</td></tr>');
+            }
+        });
+    }
+
+    loadData();
+
+    $(document).on('click', '.btn-delete', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        if (confirm('Apakah Anda yakin ingin menghapus artikel ini?')) {
+            $.ajax({
+                url: "<?= base_url('ajax/delete/') ?>" + id,
+                method: "DELETE",
+                success: function(data) {
+                    alert('Artikel berhasil dihapus!');
+                    loadData();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Error: ' + textStatus + ' ' + errorThrown);
+                }
+            });
+        }
+    });
+
+});
+</script>
+
+<?= $this->include('template/footer'); ?>
+```
+
+> **Keterangan:**
+> - `loadData()` fungsi untuk mengambil data dari server menggunakan AJAX dan menampilkannya di tabel tanpa reload halaman
+> - `showLoadingMessage()` menampilkan pesan loading saat data sedang diambil
+> - `.btn-delete` tombol hapus yang menggunakan AJAX untuk menghapus artikel tanpa reload halaman
+
+---
+
+## Hasil Halaman AJAX
+
+Buka url: `http://localhost/lab11_ci/ci4/public/index.php/ajax`
+
+> 📸 **[SCREENSHOT HALAMAN AJAX YANG MENAMPILKAN DATA ARTIKEL DI SINI]**
+
+---
+
+## Hasil Hapus Data dengan AJAX
+
+Klik tombol **Delete** pada salah satu artikel, konfirmasi penghapusan, dan data akan terhapus tanpa reload halaman.
+
+<img width="1606" height="754" alt="image" src="https://github.com/user-attachments/assets/8070649c-123d-4b78-ae22-78b3d92cfe6f" />
+
+## Kesimpulan
+
+Pada praktikum ini telah berhasil dibuat:
+- **AJAX Controller** untuk menangani request AJAX dari browser
+- **Fitur load data** menggunakan AJAX tanpa reload halaman
+- **Fitur hapus data** menggunakan AJAX tanpa reload halaman
+- **Library jQuery** digunakan untuk mempermudah proses AJAX
