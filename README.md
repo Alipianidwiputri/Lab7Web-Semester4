@@ -1795,7 +1795,8 @@ $(document).ready(function() {
 
 Buka url: `http://localhost/lab11_ci/ci4/public/index.php/ajax`
 
-> 📸 **[SCREENSHOT HALAMAN AJAX YANG MENAMPILKAN DATA ARTIKEL DI SINI]**
+<img width="593" height="328" alt="image" src="https://github.com/user-attachments/assets/fc97797b-e16e-479c-8687-c15303862e08" />
+*
 
 ---
 
@@ -1803,7 +1804,12 @@ Buka url: `http://localhost/lab11_ci/ci4/public/index.php/ajax`
 
 Klik tombol **Delete** pada salah satu artikel, konfirmasi penghapusan, dan data akan terhapus tanpa reload halaman.
 
+**Notifikasi Delete**
 <img width="1606" height="754" alt="image" src="https://github.com/user-attachments/assets/8070649c-123d-4b78-ae22-78b3d92cfe6f" />
+
+
+**Setelah Data dihapus**
+<img width="1503" height="689" alt="image" src="https://github.com/user-attachments/assets/2f0c3d4f-b67c-4689-99b2-cd2f746ac876" />
 
 ## Kesimpulan
 
