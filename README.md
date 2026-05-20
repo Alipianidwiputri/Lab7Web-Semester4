@@ -1588,19 +1588,6 @@ Pada praktikum ini telah berhasil dibuat fitur:
 - Nama file gambar tersimpan di database pada kolom `gambar`
 - Form menggunakan `enctype="multipart/form-data"` agar bisa mengirim file
 
-# Praktikum 8
-
-Form edit
-<img width="1524" height="866" alt="image" src="https://github.com/user-attachments/assets/3b92bfa3-03c9-4fdd-bd58-e25a32488c81" />
-
-sebelum di delete
-<img width="1595" height="760" alt="image" src="https://github.com/user-attachments/assets/efab6c92-61aa-4e09-9204-856c3b14d8a4" />
-
-notifikasi untuk memastikan ingin di delete
-<img width="1606" height="754" alt="image" src="https://github.com/user-attachments/assets/8070649c-123d-4b78-ae22-78b3d92cfe6f" />
-
-setelah di delete
-<img width="1503" height="689" alt="image" src="https://github.com/user-attachments/assets/2f0c3d4f-b67c-4689-99b2-cd2f746ac876" />
 ---
 
 # Praktikum 8 - AJAX
@@ -1818,3 +1805,221 @@ Pada praktikum ini telah berhasil dibuat:
 - **Fitur load data** menggunakan AJAX tanpa reload halaman
 - **Fitur hapus data** menggunakan AJAX tanpa reload halaman
 - **Library jQuery** digunakan untuk mempermudah proses AJAX
+
+---
+
+# Praktikum 9 - Implementasi AJAX Pagination dan Search
+
+---
+
+## Langkah 1 - Modifikasi Controller admin_index()
+
+Buka **`app/Controllers/Artikel.php`**, cari method `admin_index()` dan ubah kodenya menjadi:
+
+```php
+public function admin_index()
+{
+    $title = 'Daftar Artikel (Admin)';
+    $model = new ArtikelModel();
+    $q = $this->request->getVar('q') ?? '';
+    $kategori_id = $this->request->getVar('kategori_id') ?? '';
+    $page = $this->request->getVar('page') ?? 1;
+
+    $builder = $model->db->table('artikel')
+        ->select('artikel.*, kategori.nama_kategori')
+        ->join('kategori', 'kategori.id_kategori = artikel.id_kategori', 'left');
+
+    if ($q != '') {
+        $builder->like('artikel.judul', $q);
+    }
+
+    if ($kategori_id != '') {
+        $builder->where('artikel.id_kategori', $kategori_id);
+    }
+
+    $artikel = $model->paginate(10, 'default', $page);
+    $pager = $model->pager;
+
+    $data = [
+        'title'       => $title,
+        'q'           => $q,
+        'kategori_id' => $kategori_id,
+        'artikel'     => $builder->get()->getResultArray(),
+        'pager'       => $pager,
+    ];
+
+    if ($this->request->isAJAX()) {
+        return $this->response->setJSON($data);
+    } else {
+        $kategoriModel = new KategoriModel();
+        $data['kategori'] = $kategoriModel->findAll();
+        return view('artikel/admin_index', $data);
+    }
+}
+```
+
+> **Keterangan:**
+> - `$page` mengambil nomor halaman dari request, default ke halaman 1
+> - `paginate(10, 'default', $page)` menerapkan pagination dengan nomor halaman yang diberikan
+> - `isAJAX()` memeriksa apakah request yang datang adalah AJAX
+> - Jika AJAX → kembalikan data dalam format JSON
+> - Jika bukan AJAX → tampilkan view seperti biasa
+
+---
+
+## Langkah 2 - Modifikasi View admin_index.php
+
+Buka **`app/Views/artikel/admin_index.php`** dan ubah seluruh isinya. Perubahan utama yang dilakukan:
+
+- Menghapus tabel statis dan menggantinya dengan `<div id="article-container">` yang akan diisi oleh AJAX
+- Menambahkan `<div id="pagination-container">` untuk pagination yang dirender oleh AJAX
+- Menambahkan `<div id="loading">` sebagai indikator loading
+- Menambahkan kode jQuery untuk melakukan request AJAX
+
+```php
+<?= $this->include('template/admin_header'); ?>
+
+<h2><?= $title; ?></h2>
+
+<div style="margin-bottom: 15px;">
+    <form id="search-form" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+        <input type="text" name="q" id="search-box" value="<?= $q; ?>"
+               placeholder="Cari judul artikel..."
+               style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+        <select name="kategori_id" id="category-filter"
+                style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+            <option value="">Semua Kategori</option>
+            <?php foreach ($kategori as $k): ?>
+            <option value="<?= $k['id_kategori']; ?>" <?= ($kategori_id == $k['id_kategori']) ? 'selected' : ''; ?>>
+                <?= $k['nama_kategori']; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
+        <input type="submit" value="🔍 Cari"
+               style="padding: 8px 20px; background-color: #1a6fc4; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    </form>
+</div>
+
+<div id="loading" style="display:none; text-align:center; padding:20px; color:#1a6fc4; font-weight:bold;">
+    ⏳ Loading data...
+</div>
+<div id="article-container"></div>
+<div id="pagination-container" style="margin-top: 15px; display: flex; justify-content: center;"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    const articleContainer = $('#article-container');
+    const paginationContainer = $('#pagination-container');
+    const searchForm = $('#search-form');
+    const searchBox = $('#search-box');
+    const categoryFilter = $('#category-filter');
+    const loading = $('#loading');
+
+    const fetchData = (url) => {
+        loading.show();
+        articleContainer.hide();
+        paginationContainer.hide();
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            success: function(data) {
+                renderArticles(data.artikel);
+                loading.hide();
+                articleContainer.show();
+                paginationContainer.show();
+            },
+            error: function() {
+                loading.hide();
+                articleContainer.html('<p style="color:red; text-align:center;">Gagal memuat data.</p>');
+                articleContainer.show();
+            }
+        });
+    };
+
+    const renderArticles = (articles) => {
+        let html = '<table border="1" cellpadding="8" cellspacing="0" style="width:100%;">';
+        html += '<thead style="background:#1a6fc4; color:white;"><tr><th>ID</th><th>Judul</th><th>Kategori</th><th>Status</th><th>Aksi</th></tr></thead><tbody>';
+
+        if (articles.length > 0) {
+            articles.forEach(article => {
+                html += `<tr>
+                    <td>${article.id}</td>
+                    <td><b>${article.judul}</b><br><small>${article.isi.substring(0, 80)}...</small></td>
+                    <td>${article.nama_kategori}</td>
+                    <td>${article.status == 1 ? 'Aktif' : 'Draft'}</td>
+                    <td>
+                        <a href="<?= base_url('admin/artikel/edit/') ?>${article.id}" style="padding:5px 10px;background:#42a5f5;color:white;border-radius:4px;text-decoration:none;margin-right:5px;">✏️ Edit</a>
+                        <a href="<?= base_url('admin/artikel/delete/') ?>${article.id}" onclick="return confirm('Yakin menghapus?');" style="padding:5px 10px;background:#ef5350;color:white;border-radius:4px;text-decoration:none;">🗑️ Hapus</a>
+                    </td>
+                </tr>`;
+            });
+        } else {
+            html += '<tr><td colspan="5" style="text-align:center;">Tidak ada data.</td></tr>';
+        }
+
+        html += '</tbody></table>';
+        articleContainer.html(html);
+    };
+
+    searchForm.on('submit', function(e) {
+        e.preventDefault();
+        const q = searchBox.val();
+        const kategori_id = categoryFilter.val();
+        fetchData(`<?= base_url('admin/artikel') ?>?q=${q}&kategori_id=${kategori_id}`);
+    });
+
+    categoryFilter.on('change', function() {
+        searchForm.trigger('submit');
+    });
+
+    fetchData('<?= base_url('admin/artikel') ?>');
+});
+</script>
+
+<?= $this->include('template/admin_footer'); ?>
+```
+
+---
+
+## Hasil Halaman Admin Artikel dengan AJAX
+
+Buka url: `http://localhost/lab11_ci/ci4/public/index.php/admin/artikel`
+
+<img width="1919" height="728" alt="image" src="https://github.com/user-attachments/assets/447c5d44-802f-4a71-8ef2-09f37bfa8956" />
+
+---
+
+## Hasil Pencarian dengan AJAX
+
+Ketik kata kunci di form pencarian dan klik **Cari**, data akan difilter tanpa reload halaman.
+
+<img width="1188" height="506" alt="image" src="https://github.com/user-attachments/assets/e4200122-1695-45ad-919d-a3dc9ea2e899" />
+
+<img width="1181" height="571" alt="image" src="https://github.com/user-attachments/assets/82b16d98-ad2e-446a-a3b2-469a74bfae82" />
+
+
+---
+
+## Hasil Filter Kategori dengan AJAX
+
+Pilih kategori dari dropdown, data akan langsung difilter tanpa reload halaman.
+
+<img width="1183" height="503" alt="image" src="https://github.com/user-attachments/assets/a6ee703b-0c8c-4cd1-951e-2a26462a7524" />
+
+<img width="1187" height="569" alt="image" src="https://github.com/user-attachments/assets/df9fcfc6-26a2-42b8-a45b-9af99de80f15" />
+
+---
+
+## Kesimpulan
+
+Pada praktikum ini telah berhasil diimplementasikan:
+- **AJAX Load Data** — data artikel dimuat otomatis menggunakan AJAX tanpa reload halaman
+- **AJAX Search** — pencarian artikel tanpa reload halaman menggunakan AJAX
+- **AJAX Filter Kategori** — filter berdasarkan kategori tanpa reload halaman
+- **Loading Indicator** — indikator loading saat data sedang diambil dari server
+- **isAJAX() check** — controller dapat membedakan request AJAX dan request biasa
+EOF
